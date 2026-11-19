@@ -1,34 +1,55 @@
-import { createContext, useReducer, useState, type Context } from "react";
+import { useEffect, useReducer } from "react";
 import "./App.css";
 import Main from "./components/Main";
 import About from "./components/About";
 import { ViewContent, type Content } from "./domain/menu";
 
+const Views: any = {
+	"/home": <Main />,
+	"/about": <About />,
+}
 
 function App() {
-	function MenuAction(state: any, action: any): Content {
-		switch (action.type) {
-			case "about": {
-				return {
-					name: "About",
-					ref_component: <About />,
-				};
+	const [content, dispatcher] = useReducer(MenuAction, "/home");
+
+	const current_component: any = Views[content];
+	// console.log(current_component);
+
+	// Initialize the current browser history entry
+	useEffect(() => {
+		window.history.replaceState(
+			{ view: "/home" },
+			"",
+			window.location.pathname,
+		);
+	}, []);
+
+	useEffect(() => {
+		function customPopState(event: any) {
+			if (event.state?.view) {
+				dispatcher({
+					type: event.state.view,
+					isPop: true,
+				});
 			}
 		}
 
-		return state;
+		window.addEventListener("popstate", customPopState);
+	}, []);
+	function MenuAction(_state: any, action: any): Content {
+		// let next_state: Content = Views[action.type];
+
+		if (!action.isPop) {
+			window.history.pushState({ view: action.type }, "", action.type);
+		}
+
+		return action.type;
 	}
-
-	const [content, dispatcher] = useReducer(MenuAction, {
-		name: "Home",
-		ref_component: <Main />,
-	});
-
 	return (
 		<>
 			<div>
 				<ViewContent value={dispatcher}>
-					{content.ref_component}
+					{current_component}
 				</ViewContent>
 			</div>
 		</>

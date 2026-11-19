@@ -1,4 +1,3 @@
-import About from "./About";
 import Link from "./Link";
 
 export function Menu({ dispatcher }: { dispatcher: any }) {
@@ -9,7 +8,8 @@ export function Menu({ dispatcher }: { dispatcher: any }) {
 			<Link
 				onClick={() => {
 					dispatcher({
-						type: "about",
+						type: "/about",
+						isPop: false
 					});
 				}}
 			>
