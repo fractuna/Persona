@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+    margin: 0;
+    height: 100%;
+}
+
+@font-face{
+    src: url("src/assets/PressStart2P.ttf");
+    font-family: "Dogica";
+}
+
+body {
+    font-family: "Dogica";
+}
