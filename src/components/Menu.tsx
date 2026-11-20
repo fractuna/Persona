@@ -16,7 +16,7 @@ export function Menu({ dispatcher }: { dispatcher: any }) {
 				about
 			</Link>
 			<p>/</p>
-			<Link href="https://fractuna.github.io">src</Link>
+			<Link href="https://github.com/fractuna">src</Link>
 			<p>/</p>
 			<Link href="./christmas/index.html">Old Page</Link>
 		</div>

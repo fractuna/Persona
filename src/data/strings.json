@@ -1,0 +1,13 @@
+{
+	"name": "James Sage (Fractuna)",
+
+	"Gear": {
+		"Software": {
+			"OS": ["Windows", "Linux"],
+			"Editor": ["Zed", "Neovim", "Vscode"]
+		},
+		"Hardware": ["Ideapad 3 5500U"]
+	},
+
+	"about": "Hello! my name is Ashkan (you can also call me james) and I’m a technology enthusiasm who likes Programming, Math, science, space, and all those nerdy stuffs. This is my personal blogging system. In this space, you can find my brainstorming thoughts and ideas that I think their cool.\n I’m an undergraduated software engineering student that loves learning and developing software, hardware with a big passion about acadamics and complex learning.\n I love to make technology tools such as software programs or embedded decies that improve life, people and the universe.\n Then if you find yourself fit wtih this type of contents, then you are so welcome to my blog.\n have a good one.\n"
+}
