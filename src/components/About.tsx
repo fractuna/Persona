@@ -1,8 +1,7 @@
-import React, { Fragment, type ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import strings from "../data/strings.json";
 
 export default function () {
-	const base_text = "-";
 	function parseString(text: string): ReactNode {
 		return text.split("\n").map((line, index) => (
 			<Fragment key={index}>
@@ -15,20 +14,27 @@ export default function () {
 	function recursiveTree(root: Object, depth: number): ReactNode {
 		{
 			return Object.entries(root).map(([key, value]) => {
-				console.log(key, "-", value);
+				// console.log(key, "-", value);
 				if (
 					Object.keys(value).length > 0 &&
 					typeof value !== "string"
 				) {
-					return recursiveTree(value, depth + 1);
+					let node = recursiveTree(value, depth + 1);
+					return (
+						<div key={key}>
+							<p>
+								{"-".repeat(depth * 5)}
+								{key}
+							</p>
+							<p>{node}</p>
+						</div>
+					)
 				}
 
 				return (
 					<div key={key}>
 						<p>
-							{key}
 							{"-".repeat(depth * 5)}
-							{"    "}
 							{value}
 						</p>
 					</div>
@@ -48,7 +54,7 @@ export default function () {
 	return (
 		<div className="m-3">
 			<p>Name: {strings.name}</p>
-			<p>Gear: {strings.name}</p>
+			{/*<p>Gear: {}</p>*/}
 			{parseObjectToTree(strings.Gear)}
 			<p>{parseString(strings.about)}</p>
 			<p className="italic">
