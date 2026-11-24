@@ -14,11 +14,11 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs
         {
-          inherit systenm;
+          inherit system;
         };
     in
     {
-      devShell.${system}.default = pkgs.mkShell
+      devShells.${system}.default = pkgs.mkShell
         {
           packages = with pkgs; [
             nodejs
@@ -26,6 +26,8 @@
             eslint
             git
             bun
+            neocities
+            sass
           ];
         };
     };

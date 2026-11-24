@@ -13,7 +13,6 @@ function App() {
   const [content, dispatcher] = useReducer(MenuAction, "/home");
 
   const current_component: any = Views[content];
-  // console.log(current_component);
 
   // Initialize the current browser history entry
   useEffect(() => {
@@ -24,6 +23,7 @@ function App() {
     );
   }, []);
 
+  // Handleing Browser `pop` state history event
   useEffect(() => {
     function customPopState(event: any) {
       if (event.state?.view) {
@@ -36,23 +36,22 @@ function App() {
 
     window.addEventListener("popstate", customPopState);
   }, []);
-  function MenuAction(_state: any, action: any): Content {
-    // let next_state: Content = Views[action.type];
 
+  /* I'm using `useReducer` just in case we may add more logics to the menus */
+  function MenuAction(_state: any, action: any): Content {
     if (!action.isPop) {
       window.history.pushState({ view: action.type }, "", action.type);
     }
 
     return action.type;
   }
+
   return (
-    <>
-      <div>
-        <ViewContent value={dispatcher}>
-          {current_component}
-        </ViewContent>
-      </div>
-    </>
+    <div>
+      <ViewContent value={dispatcher}>
+        {current_component}
+      </ViewContent>
+    </div>
   );
 }
 
